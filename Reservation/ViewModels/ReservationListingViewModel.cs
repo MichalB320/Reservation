@@ -15,7 +15,7 @@ public class ReservationListingViewModel : ViewModelBase
     public ICommand MakeReservationCommand { get; }
     public ICommand LoadReservationsCommand { get; }
 
-    public ReservationListingViewModel(Hotel hotel, NavigationService navigationService)
+    public ReservationListingViewModel(Hotel hotel, NavigationService<MakeReservationViewModel> navigationService)
     {
         _reservations = new ObservableCollection<ReservationViewModel>();
 
@@ -43,7 +43,7 @@ public class ReservationListingViewModel : ViewModelBase
         }
     }
 
-    public static ReservationListingViewModel LoadViewModel(Hotel hotel, NavigationService makeReservationNavigationService)
+    public static ReservationListingViewModel LoadViewModel(Hotel hotel, NavigationService<MakeReservationViewModel> makeReservationNavigationService)
     {
         ReservationListingViewModel viewModel = new ReservationListingViewModel(hotel, makeReservationNavigationService);
 
@@ -63,7 +63,7 @@ public class ReservationListingViewModel : ViewModelBase
         }
     }
 
-    private void OnClickMakeReservation(NavigationService navigationService)
+    private void OnClickMakeReservation(NavigationService<MakeReservationViewModel> navigationService)
     {
         navigationService.Navigate();
     }

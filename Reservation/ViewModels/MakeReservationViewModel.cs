@@ -41,7 +41,7 @@ public class MakeReservationViewModel : ViewModelBase
 
     private readonly Hotel _hotel;
 
-    public MakeReservationViewModel(Hotel hotel, NavigationService navigationService)
+    public MakeReservationViewModel(Hotel hotel, NavigationService<ReservationListingViewModel> navigationService)
     {
         SubmitCommand = new AsyncRelayCommand(() => OnClickSubmit(navigationService));
         CancelCommand = new RelayCommand(() => OnClickCancel(navigationService));
@@ -49,12 +49,12 @@ public class MakeReservationViewModel : ViewModelBase
         _hotel = hotel;
     }
 
-    private void OnClickCancel(NavigationService reservationViewNavigationService)
+    private void OnClickCancel(NavigationService<ReservationListingViewModel> reservationViewNavigationService)
     {
         reservationViewNavigationService.Navigate();
     }
 
-    private async Task OnClickSubmit(NavigationService reservationViewNavigationService)
+    private async Task OnClickSubmit(NavigationService<ReservationListingViewModel> reservationViewNavigationService)
     {
         Reservation.Models.Reservation reservation = new Models.Reservation(new RoomID(FloorNumber, RoomNumber), Username, StartDate, EndDate);
 
